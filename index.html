@@ -1,0 +1,526 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أصول الهوية البصرية | Hasan Salamone</title>
+    
+    <!-- Google Fonts: Alexandria -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #0A0A0A;
+            --cream: #F4EADE;
+            --gold: #C69B3C;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Alexandria', sans-serif;
+            background-color: #FFFFFF; /* خلفية بيضاء لتبرز البطاقات الملونة */
+            color: var(--black);
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-top: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem 3rem;
+        }
+
+        /* Tabs Styling */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            background-color: #ffffff;
+            border: 2px solid var(--gold);
+            color: var(--black);
+            padding: 0.8rem 2rem;
+            font-family: 'Alexandria', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background-color: var(--cream);
+        }
+
+        .tab-btn.active {
+            background-color: var(--gold);
+            color: var(--black);
+            box-shadow: 0 4px 15px rgba(198, 155, 60, 0.4);
+        }
+
+        /* Grid & Cards Base */
+        .color-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .color-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(10, 10, 10, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(10, 10, 10, 0.12);
+        }
+
+        .card img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 1.5rem;
+            display: block;
+            object-fit: contain;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.5;
+        }
+
+        .download-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: auto;
+        }
+
+        /* --- Dynamic Background Colors For Cards --- */
+
+        /* 1. Beige Background Cards (Standard, Gold, Black) */
+        .bg-beige {
+            background-color: var(--cream);
+            color: var(--black);
+        }
+        .bg-beige p { color: #555; }
+        .bg-beige .download-btn {
+            background-color: var(--black);
+            color: #ffffff;
+        }
+        .bg-beige .download-btn:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+
+        /* 2. Black Background Cards (GoldBeige) */
+        .bg-black {
+            background-color: var(--black);
+            color: var(--cream);
+        }
+        .bg-black h2 { color: var(--gold); }
+        .bg-black p { color: #cccccc; }
+        .bg-black .download-btn {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        .bg-black .download-btn:hover {
+            background-color: var(--cream);
+            color: var(--black);
+        }
+
+        /* 3. Gold Background Cards (Beige) */
+        .bg-gold {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        .bg-gold p { color: #333333; }
+        .bg-gold .download-btn {
+            background-color: var(--black);
+            color: #ffffff;
+        }
+        .bg-gold .download-btn:hover {
+            background-color: var(--cream);
+            color: var(--black);
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            .tab-btn { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ملفات براند صالون حسن سلموني</h1>
+        <p>اختر اللون لعرض وتحميل الأصول الخاصة به</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openColor(event, 'standard')">الأساسي</button>
+            <button class="tab-btn" onclick="openColor(event, 'gold-beige')">الذهبي والبيج</button>
+            <button class="tab-btn" onclick="openColor(event, 'beige')">البيج</button>
+            <button class="tab-btn" onclick="openColor(event, 'black')">الأسود</button>
+            <button class="tab-btn" onclick="openColor(event, 'gold')">الذهبي</button>
+        </div>
+
+        <!-- ==============================================
+             1. STANDARD COLOR SECTION (الأساسي) - خلفية بيج
+        ================================================== -->
+        <div id="standard" class="color-section active">
+            <div class="grid">
+                <div class="card bg-beige">
+                    <img src="Standard/Standard (1).png" alt="شعار عمودي">
+                    <h2>شعار عمودي (للدائرة)</h2>
+                    <p>مخصص للافتة الدائرية الخارجية والداخلية</p>
+                    <a href="Standard/Standard (1).pdf" download="Standard (1).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Standard/Standard (2).png" alt="شعار عمودي للديكور">
+                    <h2>شعار عمودي (للديكور)</h2>
+                    <p>مخصص للديكور والاستخدامات العامة الأخرى</p>
+                    <a href="Standard/Standard (2).pdf" download="Standard (2).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Standard/Standard (3).png" alt="تصميم دائري">
+                    <h2>التصميم الدائري</h2>
+                    <p>مخصص للأختام وطباعة المنتجات</p>
+                    <a href="Standard/Standard (3).pdf" download="Standard (3).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Standard/Standard (4).png" alt="شعار أفقي">
+                    <h2>الشعار الأفقي</h2>
+                    <p>مخصص للافتة العلوية فوق الصالون</p>
+                    <a href="Standard/Standard (4).pdf" download="Standard (4).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Standard/Standard (5).png" alt="شكل ماسي">
+                    <h2>الشكل الماسي</h2>
+                    <p>مخصص لرداء قص الشعر الواقي</p>
+                    <a href="Standard/Standard (5).pdf" download="Standard (5).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Standard/Standard (7).png" alt="درع الحماية">
+                    <h2>درع الحماية</h2>
+                    <p>مخصص للطباعة على ملابس الحلاقة</p>
+                    <a href="Standard/Standard (7).pdf" download="Standard (7).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Standard/Standard (8).png" alt="الاسم الكامل">
+                    <h2>الاسم الكامل</h2>
+                    <p>الشعار النصي بالاسم الكامل</p>
+                    <a href="Standard/Standard (8).pdf" download="Standard (8).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Standard/Standard (9).png" alt="المونوغرام">
+                    <h2>المونوغرام</h2>
+                    <p>رمز الهوية المختصر (HS)</p>
+                    <a href="Standard/Standard (9).pdf" download="Standard (9).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==============================================
+             2. GOLD & BEIGE SECTION (الذهبي والبيج) - خلفية سوداء
+        ================================================== -->
+        <div id="gold-beige" class="color-section">
+            <div class="grid">
+                <div class="card bg-black">
+                    <img src="GoldBeige/GoldBeige (1).png" alt="شعار عمودي">
+                    <h2>شعار عمودي (للدائرة)</h2>
+                    <p>مخصص للافتة الدائرية الخارجية والداخلية</p>
+                    <a href="GoldBeige/GoldBeige (1).pdf" download="GoldBeige (1).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-black">
+                    <img src="GoldBeige/GoldBeige (2).png" alt="شعار عمودي للديكور">
+                    <h2>شعار عمودي (للديكور)</h2>
+                    <p>مخصص للديكور والاستخدامات العامة الأخرى</p>
+                    <a href="GoldBeige/GoldBeige (2).pdf" download="GoldBeige (2).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-black">
+                    <img src="GoldBeige/GoldBeige (3).png" alt="تصميم دائري">
+                    <h2>التصميم الدائري</h2>
+                    <p>مخصص للأختام وطباعة المنتجات</p>
+                    <a href="GoldBeige/GoldBeige (3).pdf" download="GoldBeige (3).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-black">
+                    <img src="GoldBeige/GoldBeige (4).png" alt="شعار أفقي">
+                    <h2>الشعار الأفقي</h2>
+                    <p>مخصص للافتة العلوية فوق الصالون</p>
+                    <a href="GoldBeige/GoldBeige (4).pdf" download="GoldBeige (4).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-black">
+                    <img src="GoldBeige/GoldBeige (5).png" alt="شكل ماسي">
+                    <h2>الشكل الماسي</h2>
+                    <p>مخصص لرداء قص الشعر الواقي</p>
+                    <a href="GoldBeige/GoldBeige (5).pdf" download="GoldBeige (5).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-black">
+                    <img src="GoldBeige/GoldBeige (7).png" alt="درع الحماية">
+                    <h2>درع الحماية</h2>
+                    <p>مخصص للطباعة على ملابس الحلاقة</p>
+                    <a href="GoldBeige/GoldBeige (7).pdf" download="GoldBeige (7).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-black">
+                    <img src="GoldBeige/GoldBeige (8).png" alt="الاسم الكامل">
+                    <h2>الاسم الكامل</h2>
+                    <p>الشعار النصي بالاسم الكامل</p>
+                    <a href="GoldBeige/GoldBeige (8).pdf" download="GoldBeige (8).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-black">
+                    <img src="GoldBeige/GoldBeige (9).png" alt="المونوغرام">
+                    <h2>المونوغرام</h2>
+                    <p>رمز الهوية المختصر (HS)</p>
+                    <a href="GoldBeige/GoldBeige (9).pdf" download="GoldBeige (9).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==============================================
+             3. BEIGE SECTION (البيج) - خلفية ذهبية
+        ================================================== -->
+        <div id="beige" class="color-section">
+            <div class="grid">
+                <div class="card bg-gold">
+                    <img src="Beige/Beige (1).png" alt="شعار عمودي">
+                    <h2>شعار عمودي (للدائرة)</h2>
+                    <p>مخصص للافتة الدائرية الخارجية والداخلية</p>
+                    <a href="Beige/Beige (1).pdf" download="Beige (1).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-gold">
+                    <img src="Beige/Beige (2).png" alt="شعار عمودي للديكور">
+                    <h2>شعار عمودي (للديكور)</h2>
+                    <p>مخصص للديكور والاستخدامات العامة الأخرى</p>
+                    <a href="Beige/Beige (2).pdf" download="Beige (2).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-gold">
+                    <img src="Beige/Beige (3).png" alt="تصميم دائري">
+                    <h2>التصميم الدائري</h2>
+                    <p>مخصص للأختام وطباعة المنتجات</p>
+                    <a href="Beige/Beige (3).pdf" download="Beige (3).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-gold">
+                    <img src="Beige/Beige (4).png" alt="شعار أفقي">
+                    <h2>الشعار الأفقي</h2>
+                    <p>مخصص للافتة العلوية فوق الصالون</p>
+                    <a href="Beige/Beige (4).pdf" download="Beige (4).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-gold">
+                    <img src="Beige/Beige (5).png" alt="شكل ماسي">
+                    <h2>الشكل الماسي</h2>
+                    <p>مخصص لرداء قص الشعر الواقي</p>
+                    <a href="Beige/Beige (5).pdf" download="Beige (5).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-gold">
+                    <img src="Beige/Beige (7).png" alt="درع الحماية">
+                    <h2>درع الحماية</h2>
+                    <p>مخصص للطباعة على ملابس الحلاقة</p>
+                    <a href="Beige/Beige (7).pdf" download="Beige (7).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-gold">
+                    <img src="Beige/Beige (8).png" alt="الاسم الكامل">
+                    <h2>الاسم الكامل</h2>
+                    <p>الشعار النصي بالاسم الكامل</p>
+                    <a href="Beige/Beige (8).pdf" download="Beige (8).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-gold">
+                    <img src="Beige/Beige (9).png" alt="المونوغرام">
+                    <h2>المونوغرام</h2>
+                    <p>رمز الهوية المختصر (HS)</p>
+                    <a href="Beige/Beige (9).pdf" download="Beige (9).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==============================================
+             4. BLACK SECTION (الأسود) - خلفية بيج
+        ================================================== -->
+        <div id="black" class="color-section">
+            <div class="grid">
+                <div class="card bg-beige">
+                    <img src="Black/Black (1).png" alt="شعار عمودي">
+                    <h2>شعار عمودي (للدائرة)</h2>
+                    <p>مخصص للافتة الدائرية الخارجية والداخلية</p>
+                    <a href="Black/Black (1).pdf" download="Black (1).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Black/Black (2).png" alt="شعار عمودي للديكور">
+                    <h2>شعار عمودي (للديكور)</h2>
+                    <p>مخصص للديكور والاستخدامات العامة الأخرى</p>
+                    <a href="Black/Black (2).pdf" download="Black (2).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Black/Black (3).png" alt="تصميم دائري">
+                    <h2>التصميم الدائري</h2>
+                    <p>مخصص للأختام وطباعة المنتجات</p>
+                    <a href="Black/Black (3).pdf" download="Black (3).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Black/Black (4).png" alt="شعار أفقي">
+                    <h2>الشعار الأفقي</h2>
+                    <p>مخصص للافتة العلوية فوق الصالون</p>
+                    <a href="Black/Black (4).pdf" download="Black (4).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Black/Black (5).png" alt="شكل ماسي">
+                    <h2>الشكل الماسي</h2>
+                    <p>مخصص لرداء قص الشعر الواقي</p>
+                    <a href="Black/Black (5).pdf" download="Black (5).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Black/Black (7).png" alt="درع الحماية">
+                    <h2>درع الحماية</h2>
+                    <p>مخصص للطباعة على ملابس الحلاقة</p>
+                    <a href="Black/Black (7).pdf" download="Black (7).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Black/Black (8).png" alt="الاسم الكامل">
+                    <h2>الاسم الكامل</h2>
+                    <p>الشعار النصي بالاسم الكامل</p>
+                    <a href="Black/Black (8).pdf" download="Black (8).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Black/Black (9).png" alt="المونوغرام">
+                    <h2>المونوغرام</h2>
+                    <p>رمز الهوية المختصر (HS)</p>
+                    <a href="Black/Black (9).pdf" download="Black (9).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==============================================
+             5. GOLD SECTION (الذهبي) - خلفية بيج
+        ================================================== -->
+        <div id="gold" class="color-section">
+            <div class="grid">
+                <div class="card bg-beige">
+                    <img src="Gold/Gold (1).png" alt="شعار عمودي">
+                    <h2>شعار عمودي (للدائرة)</h2>
+                    <p>مخصص للافتة الدائرية الخارجية والداخلية</p>
+                    <a href="Gold/Gold (1).pdf" download="Gold (1).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Gold/Gold (2).png" alt="شعار عمودي للديكور">
+                    <h2>شعار عمودي (للديكور)</h2>
+                    <p>مخصص للديكور والاستخدامات العامة الأخرى</p>
+                    <a href="Gold/Gold (2).pdf" download="Gold (2).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Gold/Gold (3).png" alt="تصميم دائري">
+                    <h2>التصميم الدائري</h2>
+                    <p>مخصص للأختام وطباعة المنتجات</p>
+                    <a href="Gold/Gold (3).pdf" download="Gold (3).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Gold/Gold (4).png" alt="شعار أفقي">
+                    <h2>الشعار الأفقي</h2>
+                    <p>مخصص للافتة العلوية فوق الصالون</p>
+                    <a href="Gold/Gold (4).pdf" download="Gold (4).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Gold/Gold (5).png" alt="شكل ماسي">
+                    <h2>الشكل الماسي</h2>
+                    <p>مخصص لرداء قص الشعر الواقي</p>
+                    <a href="Gold/Gold (5).pdf" download="Gold (5).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Gold/Gold (7).png" alt="درع الحماية">
+                    <h2>درع الحماية</h2>
+                    <p>مخصص للطباعة على ملابس الحلاقة</p>
+                    <a href="Gold/Gold (7).pdf" download="Gold (7).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Gold/Gold (8).png" alt="الاسم الكامل">
+                    <h2>الاسم الكامل</h2>
+                    <p>الشعار النصي بالاسم الكامل</p>
+                    <a href="Gold/Gold (8).pdf" download="Gold (8).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+                <div class="card bg-beige">
+                    <img src="Gold/Gold (9).png" alt="المونوغرام">
+                    <h2>المونوغرام</h2>
+                    <p>رمز الهوية المختصر (HS)</p>
+                    <a href="Gold/Gold (9).pdf" download="Gold (9).pdf" class="download-btn">تحميل (PDF)</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript to handle tab switching -->
+    <script>
+        function openColor(evt, colorName) {
+            var i, sections, tabBtns;
+            sections = document.getElementsByClassName("color-section");
+            for (i = 0; i < sections.length; i++) {
+                sections[i].classList.remove("active");
+            }
+
+            tabBtns = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            document.getElementById(colorName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
